@@ -1,0 +1,39 @@
+\problem{}
+Give the time complexity of the following code and explain the reason.
+\begin{enumerate}[(1)]
+	\item 
+	
+	\begin{lstlisting}
+    for ( i=1; i < n; i *= 2 ) {
+        for ( j = n; j > 0; j /= 2 ) {
+            for ( k = j; k <= n; k += 2 ) {
+                res += (i * j + j * k );
+            }
+        }
+    }
+    \end{lstlisting}
+	
+	\item 
+	\begin{lstlisting}
+    for ( i = n; i > 0; i -= 1 ) {
+        for ( j = 1; j < n; j *= 2 ) {
+            for ( k = 0; k < j; k += 1 ) {
+                res += (i * j + j * k );
+            }
+        }
+    }
+
+\end{lstlisting}
+\end{enumerate}
+
+ 
+\solution{
+\begin{enumerate}[(a)]
+	\item 
+	For i-loop is $O(logn)$, for j-loop is $O(logn)$, for k-loop is $O(n)$, so the total complexity is $O(nlog^2n)$.
+	\item
+	For i-loop is $O(n)$, for jk-loop is $O(n)$, because
+	$$1 + 2 + 4 +...+ \frac{n}{2} = \frac{2(1-2^{logn})}{1-2} = 2n$$.
+	So the total complexity is $O(n^2)$.
+\end{enumerate}
+}

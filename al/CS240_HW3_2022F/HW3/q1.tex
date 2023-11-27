@@ -1,0 +1,18 @@
+\problem{}
+Suppose there is a finite set \textit{C} and a collection of subsets of \textit{C}. The SET-PACKING problem asks if some K subsets in the collection are pairwise disjoint(in other words, no two of them share an element). Show that SET-PACKING problem is NP-complete.\\
+Hint: Reduction from Independent Set.
+
+
+\solution{
+To show that SET-PACKING problem is NP-complete, we should prove that the solution can be verified in polynomial time first. Assume that we have $k$ subsets, if we want to check whether they are pairwise disjoint, we need to check $k^2$ times and each check cost no more than $O(n)$. In conclusion, the verification can be done in polynomial time and it's a NP problem.  
+
+Then we need a polynomial-time reduction from Independent Set: Given a graph $G = (V,E)$ and a number $k$, we define that $S(v) \subset E$ as a family, which means for every node $v\in V$ it contains all edges adjacent with $v$. We define that $S(v)$ and $v$ is a group with center $v$, so two groups are disjoint if and only if their centers are not adjacent. Therefore, $G$ contains an independent set of $k$ nodes if and only if we can select $k$ pairewise disjoint sets from this family.
+
+Finally, we need to show yes-instances of Independent Set map to yes-instances of Set-Packing:
+
+->: Suppose there is an independent set problem on a graph $G(V,E)$, we create a collection of $C$ sets, and for $v \in V$ has a set $S_v \in C$ which contains all edges adjacent to $v$. So each set packing in $C$ matches a set of vertices no two of which have same edge. Therefore it is an independent set in $G$ of the same size.
+
+<-: Suppose there is a set packing problem on a collection $C$, we create  a graph $G(V,E)$, where for every $S\in C$ has a vertex $v_S\in V$ and if $S_1,S_2$ intersect there is an edge between $v_{S_1},v_{S_2}$. So every independent set(vertex) in $G$ matches a set of sets from $C$ that no two of which intersect. 
+
+From the above aspects, it's proved that SET-PACKING problem is NP-complete.
+}

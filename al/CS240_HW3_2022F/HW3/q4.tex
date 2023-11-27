@@ -1,0 +1,16 @@
+\problem{}
+STINGY SAT is the following problem: given a set of clauses (each a disjunction of literals) and an integer k, find a satisfying assignment in which at most k variables a true, if such an assignment exists. Prove that STINGY SAT is NP-complete.
+
+\solution{
+It's obvious that the verification of sting SAT can be done in polynomial time beacuse we just need to verify $k$ clause and it's a NP problem.  
+
+Then we need a polynomial-time reduction from SAT: Given a SAT $A$, assume that $(A,k)$ is a sting SAT where $k$ equals to the number of variables in SAT $A$.
+
+Finally, we need to show yes-instances of SAT map to yes-instances of sting SAT:
+
+->: Suppose $A$ has a truth $T$. Because $A$ has $k$ variables, $T$ will be a positive solution for sting SAT $(A,k)$ too.
+
+<-: Suppose $(A,k)$ has a truth $T$ and no more than $k$ variables shows true. Apparently $T$ is a positive solution for SAT $A$ too.
+
+From the above aspects, it's proved that sting SAT problem is NP-complete.
+}

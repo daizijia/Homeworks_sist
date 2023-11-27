@@ -1,0 +1,16 @@
+\problem{}
+Suppose you are a security guard at ShanghaiTech University and now troubled by fraud detection. Since criminals may make some student cards to help thieves sneak into the campus, you have confiscated \textit{n} student cards. Each card is a small plastic sheet with a magnetic stripe which encodes data, and belongs to a unique student. The cards have the same content on the surface because the student service department wants to save cost. \\
+
+As a security guard, you have to find out whether there is someone colluding with the criminals and copying his student card. You has an equivalence tester, which can tell whether two cards belong to one person, but cannot tell who it is. (We say two cards are equivalent if they belong to one person.)\\
+
+Assume that to invoke the equivalence tester, each time you can only take two cards and plug them into the equivalence tester. Please determine whether there is a set of more than \textit{n/2} cards that are equivalent in \textit{n} cards, i.e. belonging to one person, with only \textit{O(n logn)} invocations of the equivalence tester.
+
+\solution{
+We can use divide and conquer. 
+\begin{itemize}
+	\item Divide. Separate the problem $P$ into $P_1$ and $P_2$, where they all have the same number of cards and target, determining whether there is a set of more than half of cards that are equivalent in $n$ cards. Repeat this step until there only two cards in a problem.
+	\item Solve. Compare two cards in each unit problem to determine whether they are equivalent. Differet card will be given different tags.  
+	\item Conquer. Conquer the divided two problems by testing cards between two problem groups.  For example, select first card from $P_1$ and test cards in $P_2$ one by one, if they are equivalent, make their tags same but different to others. Then repeat slecting next not equivalent card in $P_1$ to test in $P_2$ until two problems are combine to bigger one.
+\end{itemize}
+At last, we just need to count the number of equivalent cards which is showed in their tags.
+}

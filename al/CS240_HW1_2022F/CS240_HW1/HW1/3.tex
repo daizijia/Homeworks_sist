@@ -1,0 +1,24 @@
+\problem{}
+
+
+Given a connected graph $G=(V,E)$ with at most $n+c$ edges where $c$ is a constant and 
+$n:=|V|$. Find the MST of $G$ in $O(n)$ running time. You should not only give a brief explanation of your algorithm but also prove the correctness and time complexity.
+
+
+\solution{
+Way: Set a list as v where the nodes have been visited will be recorded. Save the edges that have been chosen in list e. Then start from recording a random node $v_1$, visit the connected nodes and choose the next node which has the shortest edge to record as $v_2$. After that obtain $v_i$ from $v_{i-1}(i=1,..,n)$ in the same way, choosing the one connected with and not in v which has shortest edge. Repeat till all nodes are in v.
+
+Correctness pf: Assume that all edge have different weights, and the tree produced by algorithm denotes as T.
+
+\begin{enumerate}[(1)]
+	\item Produce a tree. The visited nodes won't be put in v twice, so the T remains acyclic through the entire algorithm. The algorithm will run till all nodes are in v, and all of them are found by the shorest edges which connect them with the prior node, so T is connected.
+	\item Each edge in T is in every MST. Separate G into S and T, If there exist $e' = (S,T)$ with $w(e')<w(e)$ and has the same end node with e, $e'$ must be found before $e$ because the algorithm always choose the shortest edge.
+	\item Tree T is a MST. From (1), it produces a tree T with $|V|-1$ edges. From (2), each edge in T is in every MST. But, every MST contains exactly $|V|-1$ edges so every MST must be T.
+\end{enumerate}
+
+Time Complexity: The algorithm visit the whole edges only once and there are most $n+c$ edges(c is a constant), So the time complexity will be $O(n)$. 
+
+
+}
+
+

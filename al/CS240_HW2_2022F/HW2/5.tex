@@ -1,0 +1,24 @@
+\problem{}
+Given three sequences L1, L2 and L, whose length is m, n and m+n respectively. Design an efficient algorithm to check if L1 and L2 can be merged into L such that all the letter orders in L1 and L2 stay unchanged with optimal time complexity. Analyze the algorithm's time complexity and space complexity.\\
+\textit{Example 1: L1 = aabb, L2 = cba, L = acabbab, then return true.}\\
+\textit{Example 2: L1 = aabb, L2 = cba, L = aaabbbc, then return false.}
+
+\textbf{Solution:}
+
+Use the dynamic programming to solve the problem. There is a matrix $dp[m,n]$ to save the result. The elements in $dp$ symbolize whether the first $i$ letters in L1 and the first $j$ letters in L2 can be merge into the first $i+j$ letters in L. The state transition equation is as following:
+
+\begin{equation}
+	\label{eq6}
+	dp[i,j]=\left\{
+	\begin{aligned}
+		True & , & dp[i-1,j] = True\wedge L1[i] = L[i+j] \\
+		True & , & dp[i,j-1] = True\wedge L2[j] = L[i+j] \\
+		False & , & else.
+	\end{aligned}
+	\right.
+\end{equation}
+
+\textbf{Analysis:}
+
+The algorithm's time complexity is $O(mn)$, for we just compute the value of elements in matrix $dp[m,n]$ only once. The space complexity is $O(mn)$ too, because we just make a size of $m*n$ matrix. 
+

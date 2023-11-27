@@ -1,0 +1,13 @@
+\problem{}
+Suppose that there are n items need to be placed in some bins. The capacity of each bin is 1, and the volume of items are not same and all volumes are smaller than 1. We want to use the fewest number of bins to place all items. Please design a 2-approximation algorithm to solve this problem.
+
+\solution{
+\textbf{2-approximation algorithm:}
+We can start to open a random bin and place items one by one in it. If the current item doesn't have an opened bin to fit in, we will open a new bin to put it in.
+
+\textbf{Proof:}
+Suppose that the optimal solution need $s'$ bins, the algorithm needs $s$ bins. If items in two bins are less than half capacity of two bins', then the algorithm will make the items in the latter bin will be put into the first bin, so there will be at least $s-1$ bins that are half full:
+$$\sum_{i=1}^{n} w_i>\frac{1}{2}(s-1)\Rightarrow s-1 < 2\sum_{i=1}^{n} w_i \Rightarrow s\le 2\sum_{i=1}^{n} w_i ,$$
+for $\sum_{i=1}^{n} w_i< s'$, it can be infer that $s<2s'$. So the algorithm is 2-approximation.
+
+}

@@ -1,0 +1,25 @@
+\problem{}
+Given a function rand2() that returns 0 or 1 with equal probability, implement rand3() using rand2() that returns 0, 1 or 2 with equal probability. Minimize the number of calls to rand2() method. Prove the correctness.
+\solution{
+\begin{algorithm}[h]
+	\caption{Rand3()} %算法的名字
+	\hspace*{0.02in} {\bf Input:} %算法的输入， \hspace*{0.02in}用来控制位置，同时利用 \\ 进行换行
+	rand2()\\
+	\hspace*{0.02in} {\bf Output:} %算法的结果输出
+	rand3()
+	\begin{algorithmic}[1]
+		\State int x,y; % \State 后写一般语句
+		\While{x==1 and y==0} % While语句，需要和EndWhile对应
+		\State x = rand2()
+		\State y = rand2()
+		\EndWhile
+		\State \Return x+y
+	\end{algorithmic}
+\end{algorithm}
+
+\textbf{Proof:} To prove that our algorithm returns 0,1,2 with equal probability, we start to discuss about the case $p(RAND3()==1)$, because there is no case that $x==1$ and $y==0$ at the same time. It can be inferred that:
+$$p(RAND3()=1)=p(x+y=1)=\frac{p(x=0,y=1)}{p(x=0,y=0)+p(x=0,y=1)+p(x=1,y=1)}$$
+For $p(x=0,y=0)=p(x=0,y=1)=p(x=1,y=1)=\frac{1}{4}$, $p(RAND3()=1)=\frac{1}{3}$.
+
+Evidenced by the same token, $p(RAND3()=0)=p(RAND3()=2)=\frac{1}{3}$.
+}

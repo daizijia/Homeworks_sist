@@ -1,0 +1,26 @@
+\problem{}
+Suppose that we wish to know which stories in a 36-storey building are safe to drop the new iPhone 14 from, and which will cause the iPhone to break on landing. We make a few assumptions:
+\begin{enumerate}
+    \item An iPhone that survives a fall can be used again. 
+    \item A broken iPhone must be discarded. 
+    \item The effect of a fall is the same for all iPhones. 
+    \item If an iPhone breaks when dropped, then it would break if dropped from a higher floor. 
+    \item If an iPhone survives a fall then it would survive a shorter fall. 
+    \item It is not ruled out that the first-floor windows break iPhones, nor is it ruled out that the 36th-floor do not cause an iPhone to break.
+\end{enumerate}
+If only one iPhone is available and we wish to be sure of obtaining the right result, the experiment can be carried out in only one way. Drop the egg from the first-floor window; if it survives, drop it from the second-floor window. Continue upward until it breaks. In the worst case, this method may require 36 droppings. Suppose there are $n$ iPhones that are available and the problem is about $k$-storey building. What is the least number of droppings that is guaranteed to work? 
+
+\textbf{Solution:}
+
+Use the dynamic programming to solve the problem. The state transition function is $f(k,n)$, which symbolize the least number of droppings that is guaranteed to work. Suppose we throw our first iphone at layer $x(1<=x<=k)$, there are two cases will occur:
+
+\begin{itemize}
+	\item The iphone broken. The function $f$ becomes $f(k-x, n)+1, 1<=x<=k$.
+	\item The iphone didn't breaks. We need to test from last $1$ to $x-1$ floors. The function $f$ becomes $f(x-1, n-1)+1, 1<=x<=k$.
+\end{itemize}
+
+Based on the above situation, The state transition function $f$ is
+$$f(k,n) = min(max(f(k-x, n),f(x-1, n-1))+1), 1<=x<=k$$
+
+\textbf{Analysis:}
+The time to solve subproblems cost $O(n)$ and the number of subproblems is $k*n$, so the time complexity is $O(kn^2)$. The space complexity is $O(kn)$. 

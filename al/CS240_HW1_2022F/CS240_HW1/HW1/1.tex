@@ -1,0 +1,27 @@
+\problem{}
+Sort the following functions in ascending order of growth. \\
+\begin{math}
+\begin{aligned}
+f_1(n) &=n^{\sqrt{n}} \\
+f_2(n) &=n^2 \\
+f_3(n) &=(\log n)^{\log n} \\
+f_4(n) &=(\log n)^n \\
+f_5(n) &=n^{2/3} \\
+f_6(n) &=666^{\sqrt{n}} \\
+f_7(n) &=2^n \\
+f_8(n) &=100^{100}
+\end{aligned}
+\end{math}
+
+
+\solution{
+Result: $f_8<f_5<f_2<f_3<f_6<f_1<f_7<f_4$
+\begin{itemize}
+	\item By observing and comparing the magnitude of the exponential of the function, the following obvious size relationships can be obtained:
+	$f_8<f_5<f_2, f_2<f_1, f_3<f_4, f_6<f_1, f_6<f_4, f_6<f_7$
+	\item $f_4>f_7$, $\because logn > 2$, when $n>c$ (c is a constance)
+	\item $f_7>f_1$, $\because log(f_7) = nlog(2) = \sqrt{n}\cdot\sqrt{n}\cdot log(2)>log(f_1) = \sqrt{n}\cdot logn$
+	\item $f_3>f_2$, $\because f_3 = (logn)^{logn}>c^{logn}>n^2=f_2$(c is a constance)
+	\item $f_6>f_3$, $\because f_3=(logn)^{logn}<n^{logn},log(n^{logn})=logn\cdot logn<n^\frac{1}{4}\cdot n^\frac{1}{4} \cdot log(666)= log(f_6)$
+\end{itemize}
+}

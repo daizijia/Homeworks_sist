@@ -1,0 +1,99 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{hyperref}
+
+\usepackage{amssymb}
+
+\usepackage{amsmath}  
+
+\usepackage{algorithm}  
+\usepackage{algpseudocode}  
+\usepackage{amsmath}  
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}  % Use Input in the format of Algorithm  
+\renewcommand{\algorithmicensure}{\textbf{Output:}} % Use Output in the format of Algorithm    
+\usepackage{listings}
+\usepackage{url}
+
+\usepackage{etoolbox}
+\newtoggle{solution}
+\toggletrue{solution}
+%\togglefalse{solution}
+\usepackage{color}
+\newcommand{\solution}[2][0pt]{\iftoggle{solution}{\smallskip{\color{red}{\flushleft\textbf{Solution}:}\par#2}}{\vspace*{#1}}}
+
+\renewcommand{\baselinestretch}{1.2}%Adjust Line Spacing
+%\geometry{left=2.0cm,right=2.0cm,top=2.0cm,bottom=2.0cm}% Adjust Margins of the File
+
+% Create horizontal rule command with an argument of height
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}}
+% Set the title here
+\title{
+    \normalfont \normalsize
+    \textsc{ShanghaiTech University} \\ [25pt]
+    \horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
+    \huge CS240 Algorithm Design and Analysis \\ % The assignment title
+    \LARGE Fall 2022\\
+    \LARGE Problem Set 2\\
+    \horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
+}
+% wrong usage of \author, never mind
+\author{Dai ZiJia 2022233158}
+\date{Due: 23:59, Oct. 25, 2022}
+
+% Add the support for auto numbering
+% use \problem{title} or \problem[number]{title} to add a new problem
+% also \subproblem is supported, just use it like \subsection
+\newcounter{ProblemCounter}
+\newcounter{oldvalue}
+\newcommand{\problem}[2][-1]{
+	\setcounter{oldvalue}{\value{secnumdepth}}
+	\setcounter{secnumdepth}{0}
+	\ifnum#1>0
+		\setcounter{ProblemCounter}{#1}
+	\else
+		\stepcounter{ProblemCounter}
+	\fi
+	\section{Problem \arabic{ProblemCounter}: #2}
+	\setcounter{secnumdepth}{\value{oldvalue}}
+}
+\newcommand{\subproblem}[1]{
+	\setcounter{oldvalue}{\value{section}}
+	\setcounter{section}{\value{ProblemCounter}}
+	\subsection{#1}
+	\setcounter{section}{\value{oldvalue}}
+}
+
+\begin{document}
+\maketitle
+\vspace{3ex}
+
+\begin{enumerate}
+%\item Please write your solutions in English. 
+\item Submit your solutions to Gradescope (www.gradescope.com).
+\item In ``Account Settings'' of Gradescope, set your FULL NAME to your Chinese name and enter your STUDENT ID correctly. 
+\item If you want to submit a handwritten version, scan it clearly. Camscanner is recommended. 
+\item When submitting your homework, match each of your solution to the corresponding problem number. 
+%\item Violations to any of above may result in some penalty on your score. 
+\end{enumerate}
+
+\newpage
+\input{HW2/1}
+
+\newpage
+\input{HW2/2}
+
+\newpage
+\input{HW2/3}
+
+\newpage
+\input{HW2/4}
+
+\newpage
+\input{HW2/5}
+
+
+\end{document}

@@ -1,0 +1,29 @@
+\problem{}
+Red and Xiaoyu are allocating a set of items $M=\{1,...,m\}$ among themselves. Each of them evaluates the items respectively and gives each of the items a valuation to
+denote their preference on the item. Given a subset of items $S\subseteq M$, one's utility is defined as 
+$$u_i(S)=max\{ \sum_{j\in S}v_i(j), b_i\}$$
+where $i\in \{Red,Xiaoyu\}$, $v_i(j)$ is $i$'s valuation on item $j$ and $b_i$ is the upper bound of $i$'s utility. Their goal is to find the optimal allocation $S_1,S_2$ that maximizes $u_R(S_1)+u_X(S_2)$. Prove this problem is NP-hard with "Knapsack".
+
+Here is an example for you to understand the problem. There are 3 items indexed by $1,2,3$. Red's valuation on the items are $10,20,30$ and Xiaoyu's valuation is $30,15,10$ while the upper bound of their total utilities are $40$ and $50$. Then the best choice is to allocate item $3$ to Red and $1,2$ to Xiaoyu which brings a $30 + ( 30 + 15)=75$ utility in total.
+
+\solution{
+To prove this problem is NP-hard, we need a polynomial time reduction Knapsack $\le_p$ this problem.
+
+The knapsack problem determine the number of each item to include in a collection so that the total weight is less than or equal to a given limit and the total value is as large as possible, it's shown below:
+$$maxmize\sum^n_{i=1}v_ix_i$$ 
+$$s.t.\sum^n_{i=1}w_ix_i \le W, x_i\in \{0,1\}$$
+
+1. Suppose there is an instance $S$, which is a subset of items $S\subseteq M$. We can reconstruct the problem in polynomial time as knapsack's input size:
+$$v_{Red}(j) = \frac{v_j}{V}$$
+$$v_{Xiaoyu}(j) = w_j$$
+$$b_{Red} = \sum_{j=1}^n \frac{v_j}{2V}$$
+$$b_{Xiaoyu} = \sum_{j=1}^n w_j -W$$
+$V$ is the maximum of all items, $W$ is the capacity of knapsack. The problem turns to:
+$$\max_S(u_{Red}(S)+u_{Xiaoyu}(M-S))$$ 
+
+2. If $S$ is optimal for the problem, it would then yield a solution to knapsack. For the reason:
+$$\max_S(u_{Red}(S)+u_{Xiaoyu}(M-S)) = \max_S(\sum_{i \in S}\frac{v_j}{V}+\sum_{j=1}^n w_j -W)$$
+$$\Leftrightarrow \max_S\sum_{i \in S}v_j$$
+
+From the above aspects, it proves the problem is NP-Hard because if we know how to solve the problem then we know how to solve “knapsack” and since “knapsack” is NP-Hard then automatically the problem must be NP-hard.
+}

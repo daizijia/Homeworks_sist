@@ -1,0 +1,42 @@
+\problem{}
+Suppose to perform a sequence of $n$ operations on a data structure. The $i$-th operation costs $i$ if $i$ is an exact power of 2, otherwise $i$-th operation costs 1.  
+\newline
+a) Using  accounting method to determine the amortized cost per operation.
+\newline
+b) Using  potential  method to determine the amortized cost per operation.
+
+\solution{
+\textbf{Accounting method:}
+%The $i$-th operation costs $O(i)$ if $i$ is an exact power of 2, otherwise $i$-th operation costs $O(1)$. The %$n$ operations will cost:
+%$$1+2+1+4+1+1+8+\cdots = n+(1+2+4+\cdots +\log n)-\log n$$
+%$$=n+\frac{1\cdot(1-2^{\log (n-1)})}{1-2}=n+n-1-1 = 2n-2=O(2n)=O(n)$$
+%It cost $O(n)$ in $n$ operations, so each operation cost $O(1)$.
+We let $c'_i$ be the charge for the i-th operation, where $c_i$ is the true cost and $b_i$ is the balance after the i-th operation. We can set $c'_i=3$ for each operation cost. In 10 times iterations they appears to be:
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{lllllllllll}
+		$i$    & 1 & 2 & 3 & 4 & 5 & 6 & 7  & 8 & 9 & 10 \\
+		$c_i$  & 1 & 2 & 1 & 4 & 1 & 1 & 1  & 8 & 1 & 1  \\
+		$c'_i$ & 3 & 3 & 3 & 3 & 3 & 3 & 3  & 3 & 3 & 3  \\
+		$b_i$  & 2 & 3 & 5 & 4 & 6 & 8 & 10 & 5 & 7 & 9 
+	\end{tabular}
+\end{table}
+ 
+ Suppose m refer to the m-th operation, if m is not an exact power of 2, there will add $3-1 = 2$ to balance. If m is an exact power of 2. The $b_m$ will be:
+ $$b_m = b_{\frac{m}{2}} + \sum_{i=\frac{m}{2}}^{m}c_i - \sum_{i=\frac{m}{2}}^{m}c'_i$$
+ $$= b_{\frac{m}{2}} + 2\cdot(m-\frac{m}{2}-1) + 3-m=b_{\frac{m}{2}}+1$$ 
+ Since $b_1 = 2,b_2=3$, the balance will always be larger than zero, which means: 
+$$T(n)=\sum_{i=1}^{n}c_i\le \sum_{i=1}^{n}c'_i=3n$$
+In conclusion, it cost $O(3n)=O(n)$ in $n$ operations, each operation cost $O(1)$.
+
+\textbf{Potential  method:}
+We can use the potential function $\Phi(h)=2x-y$, where $x$ is the current number of elements, $y$ is the next an exact power of 2, for example if $x=6$, then $y = 8$. It can be inferred that $\Phi(h_1)=0,\Phi(h_i)\ge0$ for all $i$. We define the amortized time of an operation is $c+\Phi(h')-\Phi(h)$. There will be two cases:
+\begin{itemize}
+	\item If $x < y$, then true cost $c_i=1$, $x$ add 1, and $y$ does not change. Then the potential is $\Phi(h')-\Phi(h)=2(x+1)-2x= 2$, so the amortized time is 3.
+	\item If $x = y$, then the next $y$ will get doubled, so the true cost $c_i=x$. But the potential is $\Phi(h')-\Phi(h)=2(x+1)-2x-(x-1)= 3-x$, so amortized time is $x + (3-x) = 3$.
+\end{itemize}
+
+In above cases, the amortized time is O(1).
+
+}
+

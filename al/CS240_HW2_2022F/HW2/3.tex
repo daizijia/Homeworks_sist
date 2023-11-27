@@ -1,0 +1,70 @@
+\problem{}
+Suppose there is Super Mario: the Game of eating Gold coins.
+The goal of this game is to get as many gold coins as possible under the rules.
+\par
+Now let's introduce the game settings.
+\par
+There are N × N grids as game map, in which there are only three categories for each grid, which are represented by values 0,1,2:
+
+1. The grid value is 0: this is an open space, which can be directly passed.
+
+2. The grid value is 1: there is a gold coin in the open space, which can be passed and the number of gold coins obtained increases by one.
+
+3. The grid value is 2: this is an obstacle, unable to pass.
+
+In the game, Mario needs to do these things:
+\par
+Mario starts from grid position (0, 0) and arrives at (N-1, N-1). In the game, Mario can only walk down or right, and can only walk through the effective grid ( the grid value is 0 or 1).
+
+When Mario arrives at (N-1, N-1), Mario should continue to walk back to (0, 0). At this stage, Mario can only walk up or left, and can only cross the effective grid ( the grid value is 0 or 1).
+
+When Mario goes from (0,0) to (N-1, N-1) and then from (N-1,N-1) to (0,0), Mario finishes the game and counts the gold coins obtained.
+If there is no path that Mario can pass between (0, 0) and (N-1, N-1), the game ends and the number of gold coins obtained is 0.
+
+NOTE: when Mario passes a grid and there is a gold coin in the grid (the grid value is 1), Mario will take the gold coin and the grid will be empty (the grid value becomes 0).
+
+Design an effective algorithm to play the game and return the maximum gold coins which can be obtained. Analyze the algorithm’s time complexity and space complexity.
+
+Example:
+$$
+Input: \text{grids} = \begin{bmatrix}
+  0&  1&  1& 2\\
+  1&  0&  2& 0\\
+  0 & 1 & 1 & 1\\
+  0& 2&  1  &0
+\end{bmatrix}, N=4
+$$
+$$
+output: \text{ max number of gold coins} = 6
+$$
+
+\textbf{Solution:}
+
+Use the dynamic programming to solve the problem. There is a matrix $dp[n,n]$ to save the result. The elements in $dp$ symbolize the maximum gold coins can be obtained. Because Mario goes from (0,0) to (N-1,N-1) and then from (N-1,N-1) to (0,0), there will be two times dynamic programming in the algorithm, and \textbf{if the coin is taken from (0,0) to (N-1,N-1), the grid value must set to zero}. The first state transition equation is as following($dp[i,j]=-1$ symbolize there is no way to grid[i,j] or here is an obstacle):
+\begin{equation}
+	\label{eq6}
+	dp_1[i,j]=\left\{
+	\begin{aligned}
+		\max(dp_1[i-1,j],dp[i,j-1]) + grid[i,j] & , & dp_1[i-1,j] \ne -1\wedge grid[i,j]\ne 2 \\
+		\max(dp_1[i-1,j],dp[i,j-1]) + grid[i,j] & , & dp_1[i,j-1] \ne -1\wedge grid[i,j]\ne 2 \\
+		-1 & , & else.
+	\end{aligned}
+	\right.
+\end{equation}
+
+The second state transition equation is as following:
+\begin{equation}
+	\label{eq6}
+	dp_2[i,j]=\left\{
+	\begin{aligned}
+		\max(dp_2[i+1,j],dp[i,j+1]) + grid[i,j] & , & dp_2[i+1,j] \ne -1\wedge grid[i,j]\ne 2 \\
+		\max(dp_2[i+1,j],dp[i,j+1]) + grid[i,j] & , & dp_2[i,j+1] \ne -1\wedge grid[i,j]\ne 2 \\
+		-1 & , & else.
+	\end{aligned}
+	\right.
+\end{equation}
+$$Coin_{max} = max(dp_1[n,n],0)+max(dp_2[0,0],0)$$
+
+\textbf{Analysis:}
+
+The computation of subproblem cost $O(1)$ and there are 2*n*n subproblems, so the time complexity is $O(n^2)$. Since we make two n*n matrix, so the space complexity is $O(n^2)$.

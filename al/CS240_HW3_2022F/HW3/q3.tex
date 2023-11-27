@@ -1,0 +1,18 @@
+\problem{}
+The problem: Suppose there is an undirected graph $G= (V, E)$ and a positive integer $M \leq |V|$. Does the gragh $G$ contain a path which   visits vertex at most once and has the number of path's edges $N \geq M$ ?
+\newline
+Prove this problem is NP-complete.
+
+\solution{
+To show the problem is NP-complete, we should prove that the solution can be verified in polynomial time first. The certification would be a list of vertices $\{v_1,v_2..,v_M\}$ in order of the path. We can check in polynomial time whether $\{ v_i,v_{i+1}\}$ is an edge($1\le i\le N-1$). Thus, it's a NP problem. 
+
+Then we reduce Hamiltonian path to this problem: Given a graph $G(V,E)$ with an instance of undirected Hamiltonian path $P$, according to thr defination it must visits each vertex exactly once, the problem path will equal to the path $P$ when integer $M < |V|$, which satisfies visiting vertex at most once and has the number of path's edges $N \ge M$.
+
+Finally, we need to show yes-instances of Hamiltonian path map to yes-instances of problem path:
+
+->: Suppose $G(V,E)$ has an instance of undirected Hamiltonian path $P$, $P$ will be the problem path when integer $M < |V|$ too.
+
+<-:  Suppose $G(V,E)$ has an instance of the problem path $P$, $P$ will be Hamiltonian path when integer $M = |V|-1$ too.
+
+From the above aspects, it's proved that this problem is NP-complete.
+}

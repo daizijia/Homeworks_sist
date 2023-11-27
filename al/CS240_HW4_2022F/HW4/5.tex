@@ -1,0 +1,8 @@
+\problem{}
+Suppose that for some decision problem, we have an algorithm which on any instance computes the correct answer with probability at least 2/3. We wish to reduce the probability of error by running the algorithm n times on the same input using independent randomness between trials and taking the most common result. Using Chernoff bounds, give an upper bound on the probability that this new algorithm produces an incorrect result.
+
+\solution{
+Suppose $EX=\mu$ is the expectation to get incorrect result in n times. $\mu =(1-p)n=\frac{n}{3}$. If we want algorithm produces an incorrect result, the error outputs must happen more than $\frac{n}{2}$ times:
+$$P(X\ge (1+\delta)\mu)=P(X\ge (1+\frac{1}{2})\frac{n}{3})\le e^{-\frac{\mu \delta^2}{3}}=e^{-\frac{\frac{n}{3}\cdot \frac{1}{4}}{3}}=e^{-\frac{n}{36}}$$
+ 
+}
