@@ -1,0 +1,3 @@
+D:/HW/CG/HW1/convex3d_collision/cmake-build-debug/CMakeFiles/convex3d.dir
+D:/HW/CG/HW1/convex3d_collision/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/HW/CG/HW1/convex3d_collision/cmake-build-debug/CMakeFiles/rebuild_cache.dir
