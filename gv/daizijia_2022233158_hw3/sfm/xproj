@@ -1,0 +1,31 @@
+#!/bin/bash
+
+PROJECT=sfm
+
+function run() {
+  docker run -it --rm \
+          --name=dzjsfm \
+          --volume=./sfm_init:/home/ubuntu/ \
+      prj:$PROJECT
+}
+
+function conn() {
+  docker exec -it $PROJECT /bin/bash
+}
+
+function build() {
+  docker build -t prj:$PROJECT .
+}
+
+function help() {
+  echo "./xproj build       build docker image"
+  echo "./xproj run         run docker instance"
+  echo "./xproj conn        connect to existing docker instance"
+}
+
+case ${1} in
+    run ) run;;
+    conn ) conn;;
+    build ) build;;
+    help ) help;;
+esac
